@@ -7,21 +7,183 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A258BCB2255B7E100853ACC /* CommentTabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BCA2255B7E100853ACC /* CommentTabelCell.swift */; };
+		7A258BD02255BB6200853ACC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BCF2255BB6200853ACC /* Comment.swift */; };
+		7A258BD22255BFCC00853ACC /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BD12255BFCC00853ACC /* RoundedTextField.swift */; };
+		7A258C242256E28000853ACC /* DestinationListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BE42256E26900853ACC /* DestinationListWorker.swift */; };
+		7A258C252256E28000853ACC /* LoginWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BE52256E26900853ACC /* LoginWorker.swift */; };
+		7A258C262256E28000853ACC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BE62256E26900853ACC /* LoginViewController.swift */; };
+		7A258C272256E28000853ACC /* DetailTripPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BE72256E26900853ACC /* DetailTripPresenter.swift */; };
+		7A258C282256E28000853ACC /* MyDestinationListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BE82256E26A00853ACC /* MyDestinationListRouter.swift */; };
+		7A258C292256E28000853ACC /* LoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BE92256E26A00853ACC /* LoginModels.swift */; };
+		7A258C2A2256E28000853ACC /* TripBookingRequestsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BEA2256E26A00853ACC /* TripBookingRequestsPresenter.swift */; };
+		7A258C2B2256E28000853ACC /* TripCommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BEB2256E26B00853ACC /* TripCommentRouter.swift */; };
+		7A258C2C2256E28000853ACC /* TripRequestsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BEC2256E26B00853ACC /* TripRequestsModels.swift */; };
+		7A258C2D2256E28000853ACC /* CreateTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BED2256E26B00853ACC /* CreateTripViewController.swift */; };
+		7A258C2E2256E28000853ACC /* DestinationListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BEE2256E26C00853ACC /* DestinationListRouter.swift */; };
+		7A258C2F2256E28000853ACC /* TripRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BEF2256E26C00853ACC /* TripRequestsViewController.swift */; };
+		7A258C302256E28000853ACC /* MyDestinationListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF02256E26C00853ACC /* MyDestinationListPresenter.swift */; };
+		7A258C312256E28000853ACC /* DetailTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF12256E26D00853ACC /* DetailTripViewController.swift */; };
+		7A258C322256E28000853ACC /* DestinationListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF22256E26D00853ACC /* DestinationListPresenter.swift */; };
+		7A258C332256E28000853ACC /* CreateTripPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF32256E26D00853ACC /* CreateTripPresenter.swift */; };
+		7A258C342256E28000853ACC /* DetailTripWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF42256E26E00853ACC /* DetailTripWorker.swift */; };
+		7A258C352256E28000853ACC /* MyDestinationListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF52256E26E00853ACC /* MyDestinationListWorker.swift */; };
+		7A258C362256E28000853ACC /* DestinationListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF62256E26F00853ACC /* DestinationListModels.swift */; };
+		7A258C372256E28000853ACC /* CreateDirectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF72256E26F00853ACC /* CreateDirectionRouter.swift */; };
+		7A258C382256E28000853ACC /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF82256E26F00853ACC /* LoginRouter.swift */; };
+		7A258C392256E28000853ACC /* FindLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BF92256E27000853ACC /* FindLocationPresenter.swift */; };
+		7A258C3A2256E28000853ACC /* CreateDirectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BFA2256E27000853ACC /* CreateDirectionInteractor.swift */; };
+		7A258C3E2256E28000853ACC /* TripBookingRequestsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BFE2256E27200853ACC /* TripBookingRequestsWorker.swift */; };
+		7A258C3F2256E28000853ACC /* FindLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BFF2256E27200853ACC /* FindLocationViewController.swift */; };
+		7A258C402256E28000853ACC /* TripBookingRequestsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C002256E27300853ACC /* TripBookingRequestsModels.swift */; };
+		7A258C412256E28000853ACC /* CreateTripInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C012256E27300853ACC /* CreateTripInteractor.swift */; };
+		7A258C422256E28000853ACC /* DestinationListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C022256E27300853ACC /* DestinationListInteractor.swift */; };
+		7A258C432256E28000853ACC /* FindLocationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C032256E27400853ACC /* FindLocationRouter.swift */; };
+		7A258C442256E28000853ACC /* TripRequestsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C042256E27400853ACC /* TripRequestsPresenter.swift */; };
+		7A258C452256E28000853ACC /* FindLocationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C052256E27400853ACC /* FindLocationInteractor.swift */; };
+		7A258C462256E28000853ACC /* CreateDirectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C062256E27500853ACC /* CreateDirectionWorker.swift */; };
+		7A258C472256E28000853ACC /* TripRequestsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C072256E27500853ACC /* TripRequestsWorker.swift */; };
+		7A258C482256E28000853ACC /* CreateDirectionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C082256E27600853ACC /* CreateDirectionModels.swift */; };
+		7A258C492256E28000853ACC /* TripCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C092256E27600853ACC /* TripCommentViewController.swift */; };
+		7A258C4A2256E28000853ACC /* CreateTripModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C0A2256E27600853ACC /* CreateTripModels.swift */; };
+		7A258C4B2256E28000853ACC /* CreateTripRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C0B2256E27700853ACC /* CreateTripRouter.swift */; };
+		7A258C4C2256E28000853ACC /* TripCommentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C0C2256E27700853ACC /* TripCommentPresenter.swift */; };
+		7A258C4D2256E28000853ACC /* CreateDirectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C0D2256E27700853ACC /* CreateDirectionPresenter.swift */; };
+		7A258C4E2256E28000853ACC /* FindLocationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C0E2256E27800853ACC /* FindLocationModels.swift */; };
+		7A258C4F2256E28000853ACC /* TripCommentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C0F2256E27800853ACC /* TripCommentModels.swift */; };
+		7A258C502256E28000853ACC /* DetailTripInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C102256E27800853ACC /* DetailTripInteractor.swift */; };
+		7A258C512256E28000853ACC /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C112256E27900853ACC /* LoginInteractor.swift */; };
+		7A258C522256E28000853ACC /* MyDestinationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C122256E27900853ACC /* MyDestinationListViewController.swift */; };
+		7A258C532256E28000853ACC /* TripBookingRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C132256E27A00853ACC /* TripBookingRequestsViewController.swift */; };
+		7A258C542256E28000853ACC /* MyDestinationListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C142256E27A00853ACC /* MyDestinationListModels.swift */; };
+		7A258C552256E28000853ACC /* DestinationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C152256E27A00853ACC /* DestinationListViewController.swift */; };
+		7A258C562256E28000853ACC /* DetailTripModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C162256E27B00853ACC /* DetailTripModels.swift */; };
+		7A258C572256E28000853ACC /* TripCommentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C172256E27B00853ACC /* TripCommentInteractor.swift */; };
+		7A258C582256E28000853ACC /* TripBookingRequestsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C182256E27B00853ACC /* TripBookingRequestsRouter.swift */; };
+		7A258C592256E28000853ACC /* MyDestinationListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C192256E27C00853ACC /* MyDestinationListInteractor.swift */; };
+		7A258C5A2256E28000853ACC /* FindLocationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C1A2256E27C00853ACC /* FindLocationWorker.swift */; };
+		7A258C5B2256E28000853ACC /* TripRequestsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C1B2256E27C00853ACC /* TripRequestsInteractor.swift */; };
+		7A258C5D2256E28000853ACC /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C1D2256E27D00853ACC /* LoginPresenter.swift */; };
+		7A258C5E2256E28000853ACC /* CreateDirectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C1E2256E27D00853ACC /* CreateDirectionViewController.swift */; };
+		7A258C5F2256E28000853ACC /* CreateTripWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C1F2256E27E00853ACC /* CreateTripWorker.swift */; };
+		7A258C602256E28000853ACC /* DetailTripRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C202256E27E00853ACC /* DetailTripRouter.swift */; };
+		7A258C612256E28000853ACC /* TripRequestsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C212256E27F00853ACC /* TripRequestsRouter.swift */; };
+		7A258C622256E28000853ACC /* TripCommentWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C222256E27F00853ACC /* TripCommentWorker.swift */; };
+		7A258C632256E28000853ACC /* TripBookingRequestsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C232256E27F00853ACC /* TripBookingRequestsInteractor.swift */; };
+		7A258C752256E9F000853ACC /* RecentTripCommentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C6F2256E9F000853ACC /* RecentTripCommentsPresenter.swift */; };
+		7A258C762256E9F000853ACC /* RecentTripCommentsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C702256E9F000853ACC /* RecentTripCommentsWorker.swift */; };
+		7A258C772256E9F000853ACC /* RecentTripCommentsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C712256E9F000853ACC /* RecentTripCommentsRouter.swift */; };
+		7A258C782256E9F000853ACC /* RecentTripCommentsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C722256E9F000853ACC /* RecentTripCommentsModels.swift */; };
+		7A258C792256E9F000853ACC /* RecentTripCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C732256E9F000853ACC /* RecentTripCommentsViewController.swift */; };
+		7A258C7A2256E9F000853ACC /* RecentTripCommentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258C742256E9F000853ACC /* RecentTripCommentsInteractor.swift */; };
 		7AD6B03122310E8B00A6914F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B03022310E8B00A6914F /* AppDelegate.swift */; };
-		7AD6B03322310E8B00A6914F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B03222310E8B00A6914F /* ViewController.swift */; };
 		7AD6B03622310E8B00A6914F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AD6B03422310E8B00A6914F /* Main.storyboard */; };
 		7AD6B03822310E8E00A6914F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD6B03722310E8E00A6914F /* Assets.xcassets */; };
 		7AD6B03B22310E8E00A6914F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AD6B03922310E8E00A6914F /* LaunchScreen.storyboard */; };
+		7AD6B052223220C400A6914F /* MainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B051223220C400A6914F /* MainWorker.swift */; };
+		7AD6B0572232268800A6914F /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B0562232268800A6914F /* ErrorResponse.swift */; };
+		7AD6B05A2232886600A6914F /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B0592232886600A6914F /* UserManager.swift */; };
+		7AD6B08422378F1400A6914F /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B08322378F1400A6914F /* SpinnerView.swift */; };
+		7AD6B08622378F3A00A6914F /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B08522378F3A00A6914F /* AlertController.swift */; };
+		7AD6B088223A537000A6914F /* MediaPostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B087223A537000A6914F /* MediaPostData.swift */; };
+		7AD6B097223E011E00A6914F /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B096223E011E00A6914F /* Trip.swift */; };
+		7AD6B099223E025200A6914F /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B098223E025200A6914F /* TripModel.swift */; };
+		7AD6B09B223E0F8D00A6914F /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B09A223E0F8D00A6914F /* TripTableViewCell.swift */; };
+		7AD6B0AA22421CD600A6914F /* RequestBookingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B0A922421CD600A6914F /* RequestBookingTableCell.swift */; };
+		7AD6B0B92242363500A6914F /* TripRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B0B82242363500A6914F /* TripRequest.swift */; };
+		7AD6B0D72244D04900A6914F /* TripRequestTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B0D62244D04900A6914F /* TripRequestTableCell.swift */; };
+		7AD6B0D92245CECE00A6914F /* MyTripTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B0D82245CECE00A6914F /* MyTripTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A258BCA2255B7E100853ACC /* CommentTabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTabelCell.swift; sourceTree = "<group>"; };
+		7A258BCF2255BB6200853ACC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		7A258BD12255BFCC00853ACC /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		7A258BE42256E26900853ACC /* DestinationListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationListWorker.swift; sourceTree = "<group>"; };
+		7A258BE52256E26900853ACC /* LoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWorker.swift; sourceTree = "<group>"; };
+		7A258BE62256E26900853ACC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7A258BE72256E26900853ACC /* DetailTripPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTripPresenter.swift; sourceTree = "<group>"; };
+		7A258BE82256E26A00853ACC /* MyDestinationListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDestinationListRouter.swift; sourceTree = "<group>"; };
+		7A258BE92256E26A00853ACC /* LoginModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModels.swift; sourceTree = "<group>"; };
+		7A258BEA2256E26A00853ACC /* TripBookingRequestsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripBookingRequestsPresenter.swift; sourceTree = "<group>"; };
+		7A258BEB2256E26B00853ACC /* TripCommentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCommentRouter.swift; sourceTree = "<group>"; };
+		7A258BEC2256E26B00853ACC /* TripRequestsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripRequestsModels.swift; sourceTree = "<group>"; };
+		7A258BED2256E26B00853ACC /* CreateTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTripViewController.swift; sourceTree = "<group>"; };
+		7A258BEE2256E26C00853ACC /* DestinationListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationListRouter.swift; sourceTree = "<group>"; };
+		7A258BEF2256E26C00853ACC /* TripRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripRequestsViewController.swift; sourceTree = "<group>"; };
+		7A258BF02256E26C00853ACC /* MyDestinationListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDestinationListPresenter.swift; sourceTree = "<group>"; };
+		7A258BF12256E26D00853ACC /* DetailTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTripViewController.swift; sourceTree = "<group>"; };
+		7A258BF22256E26D00853ACC /* DestinationListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationListPresenter.swift; sourceTree = "<group>"; };
+		7A258BF32256E26D00853ACC /* CreateTripPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTripPresenter.swift; sourceTree = "<group>"; };
+		7A258BF42256E26E00853ACC /* DetailTripWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTripWorker.swift; sourceTree = "<group>"; };
+		7A258BF52256E26E00853ACC /* MyDestinationListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDestinationListWorker.swift; sourceTree = "<group>"; };
+		7A258BF62256E26F00853ACC /* DestinationListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationListModels.swift; sourceTree = "<group>"; };
+		7A258BF72256E26F00853ACC /* CreateDirectionRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDirectionRouter.swift; sourceTree = "<group>"; };
+		7A258BF82256E26F00853ACC /* LoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		7A258BF92256E27000853ACC /* FindLocationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindLocationPresenter.swift; sourceTree = "<group>"; };
+		7A258BFA2256E27000853ACC /* CreateDirectionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDirectionInteractor.swift; sourceTree = "<group>"; };
+		7A258BFE2256E27200853ACC /* TripBookingRequestsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripBookingRequestsWorker.swift; sourceTree = "<group>"; };
+		7A258BFF2256E27200853ACC /* FindLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindLocationViewController.swift; sourceTree = "<group>"; };
+		7A258C002256E27300853ACC /* TripBookingRequestsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripBookingRequestsModels.swift; sourceTree = "<group>"; };
+		7A258C012256E27300853ACC /* CreateTripInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTripInteractor.swift; sourceTree = "<group>"; };
+		7A258C022256E27300853ACC /* DestinationListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationListInteractor.swift; sourceTree = "<group>"; };
+		7A258C032256E27400853ACC /* FindLocationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindLocationRouter.swift; sourceTree = "<group>"; };
+		7A258C042256E27400853ACC /* TripRequestsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripRequestsPresenter.swift; sourceTree = "<group>"; };
+		7A258C052256E27400853ACC /* FindLocationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindLocationInteractor.swift; sourceTree = "<group>"; };
+		7A258C062256E27500853ACC /* CreateDirectionWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDirectionWorker.swift; sourceTree = "<group>"; };
+		7A258C072256E27500853ACC /* TripRequestsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripRequestsWorker.swift; sourceTree = "<group>"; };
+		7A258C082256E27600853ACC /* CreateDirectionModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDirectionModels.swift; sourceTree = "<group>"; };
+		7A258C092256E27600853ACC /* TripCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCommentViewController.swift; sourceTree = "<group>"; };
+		7A258C0A2256E27600853ACC /* CreateTripModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTripModels.swift; sourceTree = "<group>"; };
+		7A258C0B2256E27700853ACC /* CreateTripRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTripRouter.swift; sourceTree = "<group>"; };
+		7A258C0C2256E27700853ACC /* TripCommentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCommentPresenter.swift; sourceTree = "<group>"; };
+		7A258C0D2256E27700853ACC /* CreateDirectionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDirectionPresenter.swift; sourceTree = "<group>"; };
+		7A258C0E2256E27800853ACC /* FindLocationModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindLocationModels.swift; sourceTree = "<group>"; };
+		7A258C0F2256E27800853ACC /* TripCommentModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCommentModels.swift; sourceTree = "<group>"; };
+		7A258C102256E27800853ACC /* DetailTripInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTripInteractor.swift; sourceTree = "<group>"; };
+		7A258C112256E27900853ACC /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		7A258C122256E27900853ACC /* MyDestinationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDestinationListViewController.swift; sourceTree = "<group>"; };
+		7A258C132256E27A00853ACC /* TripBookingRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripBookingRequestsViewController.swift; sourceTree = "<group>"; };
+		7A258C142256E27A00853ACC /* MyDestinationListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDestinationListModels.swift; sourceTree = "<group>"; };
+		7A258C152256E27A00853ACC /* DestinationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationListViewController.swift; sourceTree = "<group>"; };
+		7A258C162256E27B00853ACC /* DetailTripModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTripModels.swift; sourceTree = "<group>"; };
+		7A258C172256E27B00853ACC /* TripCommentInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCommentInteractor.swift; sourceTree = "<group>"; };
+		7A258C182256E27B00853ACC /* TripBookingRequestsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripBookingRequestsRouter.swift; sourceTree = "<group>"; };
+		7A258C192256E27C00853ACC /* MyDestinationListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDestinationListInteractor.swift; sourceTree = "<group>"; };
+		7A258C1A2256E27C00853ACC /* FindLocationWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindLocationWorker.swift; sourceTree = "<group>"; };
+		7A258C1B2256E27C00853ACC /* TripRequestsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripRequestsInteractor.swift; sourceTree = "<group>"; };
+		7A258C1D2256E27D00853ACC /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		7A258C1E2256E27D00853ACC /* CreateDirectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDirectionViewController.swift; sourceTree = "<group>"; };
+		7A258C1F2256E27E00853ACC /* CreateTripWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTripWorker.swift; sourceTree = "<group>"; };
+		7A258C202256E27E00853ACC /* DetailTripRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTripRouter.swift; sourceTree = "<group>"; };
+		7A258C212256E27F00853ACC /* TripRequestsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripRequestsRouter.swift; sourceTree = "<group>"; };
+		7A258C222256E27F00853ACC /* TripCommentWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCommentWorker.swift; sourceTree = "<group>"; };
+		7A258C232256E27F00853ACC /* TripBookingRequestsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripBookingRequestsInteractor.swift; sourceTree = "<group>"; };
+		7A258C6F2256E9F000853ACC /* RecentTripCommentsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTripCommentsPresenter.swift; sourceTree = "<group>"; };
+		7A258C702256E9F000853ACC /* RecentTripCommentsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTripCommentsWorker.swift; sourceTree = "<group>"; };
+		7A258C712256E9F000853ACC /* RecentTripCommentsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTripCommentsRouter.swift; sourceTree = "<group>"; };
+		7A258C722256E9F000853ACC /* RecentTripCommentsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTripCommentsModels.swift; sourceTree = "<group>"; };
+		7A258C732256E9F000853ACC /* RecentTripCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTripCommentsViewController.swift; sourceTree = "<group>"; };
+		7A258C742256E9F000853ACC /* RecentTripCommentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTripCommentsInteractor.swift; sourceTree = "<group>"; };
 		7AD6B02D22310E8A00A6914F /* OneDirection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneDirection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD6B03022310E8B00A6914F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7AD6B03222310E8B00A6914F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7AD6B03522310E8B00A6914F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7AD6B03722310E8E00A6914F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7AD6B03A22310E8E00A6914F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7AD6B03C22310E8E00A6914F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AD6B051223220C400A6914F /* MainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWorker.swift; sourceTree = "<group>"; };
+		7AD6B0562232268800A6914F /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		7AD6B0592232886600A6914F /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		7AD6B08322378F1400A6914F /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
+		7AD6B08522378F3A00A6914F /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		7AD6B087223A537000A6914F /* MediaPostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPostData.swift; sourceTree = "<group>"; };
+		7AD6B096223E011E00A6914F /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		7AD6B098223E025200A6914F /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
+		7AD6B09A223E0F8D00A6914F /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
+		7AD6B0A922421CD600A6914F /* RequestBookingTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBookingTableCell.swift; sourceTree = "<group>"; };
+		7AD6B0B82242363500A6914F /* TripRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRequest.swift; sourceTree = "<group>"; };
+		7AD6B0D62244D04900A6914F /* TripRequestTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRequestTableCell.swift; sourceTree = "<group>"; };
+		7AD6B0D82245CECE00A6914F /* MyTripTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +197,167 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A258C642256E28F00853ACC /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C692256E42E00853ACC /* LoginScene */,
+				7A258C672256E3F100853ACC /* TripListScene */,
+				7A258C682256E40F00853ACC /* MyTripListScene */,
+				7A258C6C2256E4E000853ACC /* AllTripRequestsScene */,
+				7A258C652256E39800853ACC /* CreateDirectionScene */,
+				7A258C6B2256E47B00853ACC /* FindLocationScene */,
+				7A258C662256E3B900853ACC /* PostDirectionScene */,
+				7A258C6A2256E46800853ACC /* TripDetailScene */,
+				7A258C6E2256E50F00853ACC /* TripRequestsScene */,
+				7A258C6D2256E4FB00853ACC /* TripCommentScene */,
+				7A258C7B2256EBE600853ACC /* RecentTripCommentsScene */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		7A258C652256E39800853ACC /* CreateDirectionScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258BFA2256E27000853ACC /* CreateDirectionInteractor.swift */,
+				7A258C082256E27600853ACC /* CreateDirectionModels.swift */,
+				7A258C0D2256E27700853ACC /* CreateDirectionPresenter.swift */,
+				7A258BF72256E26F00853ACC /* CreateDirectionRouter.swift */,
+				7A258C1E2256E27D00853ACC /* CreateDirectionViewController.swift */,
+				7A258C062256E27500853ACC /* CreateDirectionWorker.swift */,
+			);
+			path = CreateDirectionScene;
+			sourceTree = "<group>";
+		};
+		7A258C662256E3B900853ACC /* PostDirectionScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C012256E27300853ACC /* CreateTripInteractor.swift */,
+				7A258C0A2256E27600853ACC /* CreateTripModels.swift */,
+				7A258BF32256E26D00853ACC /* CreateTripPresenter.swift */,
+				7A258C0B2256E27700853ACC /* CreateTripRouter.swift */,
+				7A258BED2256E26B00853ACC /* CreateTripViewController.swift */,
+				7A258C1F2256E27E00853ACC /* CreateTripWorker.swift */,
+			);
+			path = PostDirectionScene;
+			sourceTree = "<group>";
+		};
+		7A258C672256E3F100853ACC /* TripListScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C022256E27300853ACC /* DestinationListInteractor.swift */,
+				7A258BF62256E26F00853ACC /* DestinationListModels.swift */,
+				7A258BF22256E26D00853ACC /* DestinationListPresenter.swift */,
+				7A258BEE2256E26C00853ACC /* DestinationListRouter.swift */,
+				7A258C152256E27A00853ACC /* DestinationListViewController.swift */,
+				7A258BE42256E26900853ACC /* DestinationListWorker.swift */,
+			);
+			path = TripListScene;
+			sourceTree = "<group>";
+		};
+		7A258C682256E40F00853ACC /* MyTripListScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C192256E27C00853ACC /* MyDestinationListInteractor.swift */,
+				7A258C142256E27A00853ACC /* MyDestinationListModels.swift */,
+				7A258BF02256E26C00853ACC /* MyDestinationListPresenter.swift */,
+				7A258BE82256E26A00853ACC /* MyDestinationListRouter.swift */,
+				7A258C122256E27900853ACC /* MyDestinationListViewController.swift */,
+				7A258BF52256E26E00853ACC /* MyDestinationListWorker.swift */,
+			);
+			path = MyTripListScene;
+			sourceTree = "<group>";
+		};
+		7A258C692256E42E00853ACC /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C112256E27900853ACC /* LoginInteractor.swift */,
+				7A258BE92256E26A00853ACC /* LoginModels.swift */,
+				7A258C1D2256E27D00853ACC /* LoginPresenter.swift */,
+				7A258BF82256E26F00853ACC /* LoginRouter.swift */,
+				7A258BE62256E26900853ACC /* LoginViewController.swift */,
+				7A258BE52256E26900853ACC /* LoginWorker.swift */,
+			);
+			path = LoginScene;
+			sourceTree = "<group>";
+		};
+		7A258C6A2256E46800853ACC /* TripDetailScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C102256E27800853ACC /* DetailTripInteractor.swift */,
+				7A258C162256E27B00853ACC /* DetailTripModels.swift */,
+				7A258BE72256E26900853ACC /* DetailTripPresenter.swift */,
+				7A258C202256E27E00853ACC /* DetailTripRouter.swift */,
+				7A258BF12256E26D00853ACC /* DetailTripViewController.swift */,
+				7A258BF42256E26E00853ACC /* DetailTripWorker.swift */,
+			);
+			path = TripDetailScene;
+			sourceTree = "<group>";
+		};
+		7A258C6B2256E47B00853ACC /* FindLocationScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C052256E27400853ACC /* FindLocationInteractor.swift */,
+				7A258C0E2256E27800853ACC /* FindLocationModels.swift */,
+				7A258BF92256E27000853ACC /* FindLocationPresenter.swift */,
+				7A258C032256E27400853ACC /* FindLocationRouter.swift */,
+				7A258BFF2256E27200853ACC /* FindLocationViewController.swift */,
+				7A258C1A2256E27C00853ACC /* FindLocationWorker.swift */,
+			);
+			path = FindLocationScene;
+			sourceTree = "<group>";
+		};
+		7A258C6C2256E4E000853ACC /* AllTripRequestsScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C232256E27F00853ACC /* TripBookingRequestsInteractor.swift */,
+				7A258C002256E27300853ACC /* TripBookingRequestsModels.swift */,
+				7A258BEA2256E26A00853ACC /* TripBookingRequestsPresenter.swift */,
+				7A258C182256E27B00853ACC /* TripBookingRequestsRouter.swift */,
+				7A258C132256E27A00853ACC /* TripBookingRequestsViewController.swift */,
+				7A258BFE2256E27200853ACC /* TripBookingRequestsWorker.swift */,
+			);
+			path = AllTripRequestsScene;
+			sourceTree = "<group>";
+		};
+		7A258C6D2256E4FB00853ACC /* TripCommentScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C172256E27B00853ACC /* TripCommentInteractor.swift */,
+				7A258C0F2256E27800853ACC /* TripCommentModels.swift */,
+				7A258C0C2256E27700853ACC /* TripCommentPresenter.swift */,
+				7A258BEB2256E26B00853ACC /* TripCommentRouter.swift */,
+				7A258C092256E27600853ACC /* TripCommentViewController.swift */,
+				7A258C222256E27F00853ACC /* TripCommentWorker.swift */,
+			);
+			path = TripCommentScene;
+			sourceTree = "<group>";
+		};
+		7A258C6E2256E50F00853ACC /* TripRequestsScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C1B2256E27C00853ACC /* TripRequestsInteractor.swift */,
+				7A258BEC2256E26B00853ACC /* TripRequestsModels.swift */,
+				7A258C042256E27400853ACC /* TripRequestsPresenter.swift */,
+				7A258C212256E27F00853ACC /* TripRequestsRouter.swift */,
+				7A258BEF2256E26C00853ACC /* TripRequestsViewController.swift */,
+				7A258C072256E27500853ACC /* TripRequestsWorker.swift */,
+			);
+			path = TripRequestsScene;
+			sourceTree = "<group>";
+		};
+		7A258C7B2256EBE600853ACC /* RecentTripCommentsScene */ = {
+			isa = PBXGroup;
+			children = (
+				7A258C6F2256E9F000853ACC /* RecentTripCommentsPresenter.swift */,
+				7A258C702256E9F000853ACC /* RecentTripCommentsWorker.swift */,
+				7A258C712256E9F000853ACC /* RecentTripCommentsRouter.swift */,
+				7A258C722256E9F000853ACC /* RecentTripCommentsModels.swift */,
+				7A258C732256E9F000853ACC /* RecentTripCommentsViewController.swift */,
+				7A258C742256E9F000853ACC /* RecentTripCommentsInteractor.swift */,
+			);
+			path = RecentTripCommentsScene;
+			sourceTree = "<group>";
+		};
 		7AD6B02422310E8A00A6914F = {
 			isa = PBXGroup;
 			children = (
@@ -54,14 +377,78 @@
 		7AD6B02F22310E8A00A6914F /* OneDirection */ = {
 			isa = PBXGroup;
 			children = (
+				7AD6B03C22310E8E00A6914F /* Info.plist */,
 				7AD6B03022310E8B00A6914F /* AppDelegate.swift */,
-				7AD6B03222310E8B00A6914F /* ViewController.swift */,
+				7AD6B050223114A400A6914F /* Assets */,
+				7AD6B0542232217000A6914F /* Model */,
+				7AD6B053223220CE00A6914F /* Worker */,
+				7A258C642256E28F00853ACC /* Scenes */,
+				7AD6B08222378E8100A6914F /* View */,
+			);
+			path = OneDirection;
+			sourceTree = "<group>";
+		};
+		7AD6B050223114A400A6914F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
 				7AD6B03422310E8B00A6914F /* Main.storyboard */,
 				7AD6B03722310E8E00A6914F /* Assets.xcassets */,
 				7AD6B03922310E8E00A6914F /* LaunchScreen.storyboard */,
-				7AD6B03C22310E8E00A6914F /* Info.plist */,
 			);
-			path = OneDirection;
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		7AD6B053223220CE00A6914F /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				7AD6B051223220C400A6914F /* MainWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		7AD6B0542232217000A6914F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7AD6B0582232870600A6914F /* Data */,
+				7AD6B0552232265300A6914F /* Responses */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7AD6B0552232265300A6914F /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				7AD6B096223E011E00A6914F /* Trip.swift */,
+				7AD6B0562232268800A6914F /* ErrorResponse.swift */,
+				7AD6B0B82242363500A6914F /* TripRequest.swift */,
+				7A258BCF2255BB6200853ACC /* Comment.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		7AD6B0582232870600A6914F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				7AD6B0592232886600A6914F /* UserManager.swift */,
+				7AD6B087223A537000A6914F /* MediaPostData.swift */,
+				7AD6B098223E025200A6914F /* TripModel.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		7AD6B08222378E8100A6914F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7AD6B08322378F1400A6914F /* SpinnerView.swift */,
+				7AD6B08522378F3A00A6914F /* AlertController.swift */,
+				7AD6B09A223E0F8D00A6914F /* TripTableViewCell.swift */,
+				7AD6B0A922421CD600A6914F /* RequestBookingTableCell.swift */,
+				7AD6B0D62244D04900A6914F /* TripRequestTableCell.swift */,
+				7AD6B0D82245CECE00A6914F /* MyTripTableCell.swift */,
+				7A258BCA2255B7E100853ACC /* CommentTabelCell.swift */,
+				7A258BD12255BFCC00853ACC /* RoundedTextField.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +522,89 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AD6B03322310E8B00A6914F /* ViewController.swift in Sources */,
+				7A258C262256E28000853ACC /* LoginViewController.swift in Sources */,
+				7AD6B099223E025200A6914F /* TripModel.swift in Sources */,
+				7A258C532256E28000853ACC /* TripBookingRequestsViewController.swift in Sources */,
+				7A258C5D2256E28000853ACC /* LoginPresenter.swift in Sources */,
+				7A258C632256E28000853ACC /* TripBookingRequestsInteractor.swift in Sources */,
+				7A258C512256E28000853ACC /* LoginInteractor.swift in Sources */,
+				7A258C402256E28000853ACC /* TripBookingRequestsModels.swift in Sources */,
+				7A258C582256E28000853ACC /* TripBookingRequestsRouter.swift in Sources */,
+				7A258C2E2256E28000853ACC /* DestinationListRouter.swift in Sources */,
+				7A258C432256E28000853ACC /* FindLocationRouter.swift in Sources */,
+				7A258C2B2256E28000853ACC /* TripCommentRouter.swift in Sources */,
 				7AD6B03122310E8B00A6914F /* AppDelegate.swift in Sources */,
+				7A258C372256E28000853ACC /* CreateDirectionRouter.swift in Sources */,
+				7A258BCB2255B7E100853ACC /* CommentTabelCell.swift in Sources */,
+				7A258C3A2256E28000853ACC /* CreateDirectionInteractor.swift in Sources */,
+				7AD6B052223220C400A6914F /* MainWorker.swift in Sources */,
+				7A258C4A2256E28000853ACC /* CreateTripModels.swift in Sources */,
+				7A258C2F2256E28000853ACC /* TripRequestsViewController.swift in Sources */,
+				7A258C622256E28000853ACC /* TripCommentWorker.swift in Sources */,
+				7AD6B08622378F3A00A6914F /* AlertController.swift in Sources */,
+				7A258C482256E28000853ACC /* CreateDirectionModels.swift in Sources */,
+				7A258C382256E28000853ACC /* LoginRouter.swift in Sources */,
+				7A258C312256E28000853ACC /* DetailTripViewController.swift in Sources */,
+				7A258C772256E9F000853ACC /* RecentTripCommentsRouter.swift in Sources */,
+				7A258C422256E28000853ACC /* DestinationListInteractor.swift in Sources */,
+				7A258C4F2256E28000853ACC /* TripCommentModels.swift in Sources */,
+				7A258C502256E28000853ACC /* DetailTripInteractor.swift in Sources */,
+				7A258C5E2256E28000853ACC /* CreateDirectionViewController.swift in Sources */,
+				7A258C322256E28000853ACC /* DestinationListPresenter.swift in Sources */,
+				7A258C562256E28000853ACC /* DetailTripModels.swift in Sources */,
+				7AD6B0572232268800A6914F /* ErrorResponse.swift in Sources */,
+				7A258C5A2256E28000853ACC /* FindLocationWorker.swift in Sources */,
+				7A258C5B2256E28000853ACC /* TripRequestsInteractor.swift in Sources */,
+				7A258C462256E28000853ACC /* CreateDirectionWorker.swift in Sources */,
+				7A258BD02255BB6200853ACC /* Comment.swift in Sources */,
+				7A258C392256E28000853ACC /* FindLocationPresenter.swift in Sources */,
+				7A258C4B2256E28000853ACC /* CreateTripRouter.swift in Sources */,
+				7A258C292256E28000853ACC /* LoginModels.swift in Sources */,
+				7A258C782256E9F000853ACC /* RecentTripCommentsModels.swift in Sources */,
+				7A258C452256E28000853ACC /* FindLocationInteractor.swift in Sources */,
+				7A258C492256E28000853ACC /* TripCommentViewController.swift in Sources */,
+				7AD6B088223A537000A6914F /* MediaPostData.swift in Sources */,
+				7A258C762256E9F000853ACC /* RecentTripCommentsWorker.swift in Sources */,
+				7A258C3F2256E28000853ACC /* FindLocationViewController.swift in Sources */,
+				7A258C4C2256E28000853ACC /* TripCommentPresenter.swift in Sources */,
+				7A258C472256E28000853ACC /* TripRequestsWorker.swift in Sources */,
+				7A258C4D2256E28000853ACC /* CreateDirectionPresenter.swift in Sources */,
+				7A258C5F2256E28000853ACC /* CreateTripWorker.swift in Sources */,
+				7A258C592256E28000853ACC /* MyDestinationListInteractor.swift in Sources */,
+				7AD6B0AA22421CD600A6914F /* RequestBookingTableCell.swift in Sources */,
+				7A258C282256E28000853ACC /* MyDestinationListRouter.swift in Sources */,
+				7A258C352256E28000853ACC /* MyDestinationListWorker.swift in Sources */,
+				7A258C3E2256E28000853ACC /* TripBookingRequestsWorker.swift in Sources */,
+				7A258C7A2256E9F000853ACC /* RecentTripCommentsInteractor.swift in Sources */,
+				7A258C302256E28000853ACC /* MyDestinationListPresenter.swift in Sources */,
+				7A258C542256E28000853ACC /* MyDestinationListModels.swift in Sources */,
+				7AD6B09B223E0F8D00A6914F /* TripTableViewCell.swift in Sources */,
+				7A258C2D2256E28000853ACC /* CreateTripViewController.swift in Sources */,
+				7A258C362256E28000853ACC /* DestinationListModels.swift in Sources */,
+				7A258C272256E28000853ACC /* DetailTripPresenter.swift in Sources */,
+				7A258C602256E28000853ACC /* DetailTripRouter.swift in Sources */,
+				7A258C572256E28000853ACC /* TripCommentInteractor.swift in Sources */,
+				7A258C442256E28000853ACC /* TripRequestsPresenter.swift in Sources */,
+				7A258C792256E9F000853ACC /* RecentTripCommentsViewController.swift in Sources */,
+				7A258C752256E9F000853ACC /* RecentTripCommentsPresenter.swift in Sources */,
+				7AD6B0D72244D04900A6914F /* TripRequestTableCell.swift in Sources */,
+				7A258C412256E28000853ACC /* CreateTripInteractor.swift in Sources */,
+				7A258C332256E28000853ACC /* CreateTripPresenter.swift in Sources */,
+				7A258C4E2256E28000853ACC /* FindLocationModels.swift in Sources */,
+				7A258C552256E28000853ACC /* DestinationListViewController.swift in Sources */,
+				7AD6B08422378F1400A6914F /* SpinnerView.swift in Sources */,
+				7A258C342256E28000853ACC /* DetailTripWorker.swift in Sources */,
+				7A258C242256E28000853ACC /* DestinationListWorker.swift in Sources */,
+				7AD6B05A2232886600A6914F /* UserManager.swift in Sources */,
+				7A258C2C2256E28000853ACC /* TripRequestsModels.swift in Sources */,
+				7A258C252256E28000853ACC /* LoginWorker.swift in Sources */,
+				7A258C2A2256E28000853ACC /* TripBookingRequestsPresenter.swift in Sources */,
+				7A258C522256E28000853ACC /* MyDestinationListViewController.swift in Sources */,
+				7AD6B0D92245CECE00A6914F /* MyTripTableCell.swift in Sources */,
+				7A258BD22255BFCC00853ACC /* RoundedTextField.swift in Sources */,
+				7AD6B0B92242363500A6914F /* TripRequest.swift in Sources */,
+				7AD6B097223E011E00A6914F /* Trip.swift in Sources */,
+				7A258C612256E28000853ACC /* TripRequestsRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
