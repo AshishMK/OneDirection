@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "hot-air-balloon-6.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "hot-air-balloon-5@2x.png",
       "scale" : "2x"
     },
     {
