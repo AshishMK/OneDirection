@@ -1257,7 +1257,7 @@
                                         <color key="sectionIndexBackgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="sectionIndexTrackingBackgroundColor" red="0.34168781729999997" green="0.34168781729999997" blue="0.34168781729999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TripTableViewCell" id="PkQ-HB-ZvS" customClass="RequestBookingTableCell" customModule="OneDirection" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TripTableViewCell" id="PkQ-HB-ZvS" customClass="RequestBookingTableCell" customModule="OneDirection" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PkQ-HB-ZvS" id="paR-lO-SzW">
@@ -1314,14 +1314,14 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crm-jd-4Pe">
-                                                                    <rect key="frame" x="323" y="20" width="36" height="50"/>
+                                                                    <rect key="frame" x="323" y="28.5" width="36" height="33"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
                                                                     </accessibility>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="36" id="t5Y-eP-rTg"/>
                                                                     </constraints>
-                                                                    <inset key="imageEdgeInsets" minX="6" minY="12" maxX="6" maxY="12"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
                                                                     <state key="normal" image="requested"/>
                                                                 </button>
                                                             </subviews>
@@ -1670,6 +1670,7 @@
                         <outlet property="initialLabel" destination="kRG-Pj-q2S" id="qvA-Ht-dyS"/>
                         <outlet property="mapView" destination="kf4-ll-ukw" id="MDO-iI-q8E"/>
                         <outlet property="nameLabel" destination="XEt-eQ-rTy" id="Wih-3O-wEr"/>
+                        <outlet property="navigationIten" destination="Loy-xz-t82" id="eih-pZ-VJx"/>
                         <outlet property="routeText" destination="m6k-U7-eDq" id="pF7-2a-3hf"/>
                         <outlet property="seatCountLabel" destination="lCB-FM-vcX" id="OPx-3o-iTA"/>
                         <outlet property="ticketButton" destination="SjA-wx-bYo" id="3ad-Xy-nkO"/>
@@ -1763,14 +1764,13 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHG-bH-Ffh">
-                                                                    <rect key="frame" x="323" y="20" width="36" height="50"/>
+                                                                    <rect key="frame" x="323" y="28.5" width="36" height="33"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
                                                                     </accessibility>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="36" id="qfk-NS-Jqf"/>
                                                                     </constraints>
-                                                                    <inset key="imageEdgeInsets" minX="6" minY="12" maxX="6" maxY="12"/>
                                                                     <state key="normal" image="requested"/>
                                                                 </button>
                                                             </subviews>
@@ -2254,12 +2254,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="book_seat" width="50" height="50"/>
+        <image name="book_seat" width="33" height="33"/>
         <image name="comment" width="25" height="25"/>
         <image name="logo" width="170" height="170"/>
         <image name="my_location" width="50" height="50"/>
-        <image name="not_found" width="512" height="512"/>
-        <image name="requested" width="50" height="50"/>
+        <image name="not_found" width="170" height="170"/>
+        <image name="requested" width="33" height="33"/>
         <image name="schedule" width="16" height="16"/>
         <image name="search" width="50" height="50"/>
         <image name="seat" width="16" height="16"/>
@@ -2270,8 +2270,8 @@
         <image name="updown" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xtP-Vq-CFe"/>
-        <segue reference="Dxb-HH-bVz"/>
+        <segue reference="8tp-Eq-BmL"/>
+        <segue reference="5CX-Nw-4Se"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.74901960779999999" green="0.1019607843" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
 </document>

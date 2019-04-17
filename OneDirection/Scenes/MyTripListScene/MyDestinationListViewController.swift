@@ -13,6 +13,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 protocol MyDestinationListDisplayLogic: class
 {
     func displayMyTrips(trip: [Trip], error: Error?)
@@ -28,11 +29,13 @@ class MyDestinationListViewController: UIViewController, MyDestinationListDispla
     @IBOutlet weak var navigationIten: UINavigationItem!
     
     //MARK: Variables
-    var selectedTrip:Trip?
+    var selectedTrip:NSTripObject?
+    var fetchedResultController : NSFetchedResultsController<NSTripObject>!
     var spinner: UIActivityIndicatorView?
     let formatter: DateFormatter = DateFormatter()
     let formatterLong: DateFormatter = DateFormatter()
     var interactor: MyDestinationListBusinessLogic?
+    var dataController : DataController!
     var router: (NSObjectProtocol & MyDestinationListRoutingLogic & MyDestinationListDataPassing)?
     
     // MARK: Lifecycle method
@@ -68,6 +71,7 @@ class MyDestinationListViewController: UIViewController, MyDestinationListDispla
         spinner?.startAnimating()
         noItemView.isHidden = true
         interactor?.getMyTrips()
+        setUpFetchResultController()
     }
     
     // MARK: Routing
@@ -79,12 +83,15 @@ class MyDestinationListViewController: UIViewController, MyDestinationListDispla
                 router.perform(selector, with: segue)
             }
         }
-        if(segue.identifier == "detailSegue"){
+        if(segue.identifier == "GotoDetailSegue"){
             let destinationVC = segue.destination as! UITabBarController
             let vc = destinationVC.viewControllers![0] as! DetailTripViewController
             let tripRequestsViewController = destinationVC.viewControllers![1] as! TripRequestsViewController
             vc.trip = selectedTrip
+            vc.dataController = dataController
             let tripCommentViewController = destinationVC.viewControllers![2] as! TripCommentViewController
+            tripRequestsViewController.dataController = dataController
+            tripCommentViewController.dataController = dataController
             tripCommentViewController.trip = selectedTrip
             tripRequestsViewController.tripSelected = selectedTrip
         }}
@@ -105,7 +112,22 @@ class MyDestinationListViewController: UIViewController, MyDestinationListDispla
         router.viewController = viewController
         router.dataStore = interactor
     }
-    
+    // Settingup CoreData result for image collection
+    fileprivate func setUpFetchResultController() {
+          let predicate = NSPredicate(format: "trip_type = 1")
+        let fetchRequest: NSFetchRequest<NSTripObject> = NSTripObject.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "id", ascending: false)
+                fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultController.delegate = self
+        do{
+            try  fetchedResultController.performFetch()
+            print("gfg\(fetchedResultController.sections?[0].numberOfObjects)")
+        }  catch {
+        }
+    }
     //MARK: Navigation callback
     @objc func showfindRouteController(_ updateLocation: Bool){
         self.performSegue(withIdentifier: "findRouteSegue", sender: nil)
@@ -131,26 +153,70 @@ class MyDestinationListViewController: UIViewController, MyDestinationListDispla
     // MARK: Delegate method -> MyDestinationListDisplayLogic
     func displayMyTrips(trip: [Trip], error: Error?)
     {
-        
-        if trip.count == 0
-        {     noItemView.isHidden = false
+        if error == nil {
+            saveToCoreData(trips: trip)
         }
-        TripModel.myTripList = trip
-        spinner?.stopAnimating()
-        tableView.reloadData()
-        loadRoutes()
+        if trip.count == 0
+        {
+            spinner?.stopAnimating()
+            if fetchedResultController.sections?[0].numberOfObjects == 0 {
+                noItemView.isHidden = false
+            }
+        }
+        
+       
     }
+    
+    func saveToCoreData(trips : [Trip]){
+        let backgroundContext : NSManagedObjectContext! = dataController.backgroundContext
+        //deleting old items
+        for trip in self.fetchedResultController.sections![0].objects!
+        {
+            dataController.viewContext.delete(trip as! NSManagedObject)
+                do{ try dataController.viewContext.save()
+                }catch {
+                }
+            
+            }
+        backgroundContext.perform {
+            for trip in  trips {
+                let img = NSTripObject(context: self.dataController.viewContext)
+                img.id = trip.id
+                img.count_accept = trip.count_accept
+                img.count  = trip.count
+                img.enddate = trip.enddate
+                img.startsdate = trip.startsdate
+                img.is_deleted = trip.deleted
+                img.latend = trip.latend
+                img.latstart = trip.latstart
+                img.longend = trip.longend
+                img.longstart = trip.longstart
+                img.name = trip.name
+                img.pals = Int32(trip.pals)
+                img.phone = trip.phone
+                if let status = trip.status {
+                    img.status =  Int32(status)
+                }
+                img.title = trip.title
+                img.trip_description = trip.description
+                img.uid = Int32(trip.uid)
+                img.trip_type = Int32(MainWorker.TripType.myTrip.rawValue)
+                try? backgroundContext.save()
+            }
+            DispatchQueue.main.async {
+                self.spinner?.stopAnimating()
+                  self.loadRoutes()
+        }
+        }}
+
     func deleteTrip(success: Bool, message: String, posintion: Int){
         if success {
-            TripModel.myTripList.remove(at: posintion)
-            tableView.reloadData()
-            noItemView.isHidden = true
-            interactor?.getMyTrips()
+            dataController.viewContext.delete( (fetchedResultController.sections?[0].objects![posintion] as! NSTripObject))
+            try! dataController.viewContext.save()
         }
         else{ spinner?.stopAnimating()
             AlertController.showAlert("Can not delete Trip", message: message)
-            
-            if  TripModel.myTripList.count == 0
+            if  fetchedResultController.sections?[0].numberOfObjects == 0
             {     noItemView.isHidden = false
             }
         }
@@ -160,8 +226,8 @@ class MyDestinationListViewController: UIViewController, MyDestinationListDispla
     func deleteBookingRequest(success: Bool, message: String, posintion: Int){
         spinner?.stopAnimating()
         if success {
-            TripModel.myTripList.remove(at: posintion)
-            tableView.reloadData()
+            (fetchedResultController.sections?[0].objects![posintion] as! NSTripObject ).status = -1
+            try! dataController.viewContext.save()
         }else {
             AlertController.showAlert("Error", message: message)
         }
@@ -171,8 +237,9 @@ class MyDestinationListViewController: UIViewController, MyDestinationListDispla
 //MARK: TableView Delegates
 extension MyDestinationListViewController : UITableViewDataSource, UITableViewDelegate{
     func loadRoutes(){
-        for trip in TripModel.tripList {
-            if  let _ = TripModel.mapRoute[trip.id]
+        for tripObject in fetchedResultController.sections![0].objects! {
+              let trip = tripObject as! NSTripObject
+            if  let _ = TripModel.mapRoute[trip.id!]
             {
                 self.tableView.reloadData()
                 continue
@@ -189,7 +256,7 @@ extension MyDestinationListViewController : UITableViewDataSource, UITableViewDe
             directions.calculate(completionHandler: {(response, error) in
                 if error != nil {
                 } else {
-                    TripModel.mapRoute[trip.id] = response
+                    TripModel.mapRoute[trip.id!] = response
                     self.tableView.reloadData()
                 }
             })
@@ -204,25 +271,24 @@ extension MyDestinationListViewController : UITableViewDataSource, UITableViewDe
         
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return fetchedResultController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TripModel.myTripList.count
+        return fetchedResultController.sections?[section].numberOfObjects ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyTripTableViewCell") as! MyTripTableCell
-        
-        let trip = TripModel.myTripList[indexPath.row]
+         let trip = fetchedResultController.object(at: indexPath)
         cell.dateLable?.text = "\(formatter.string(from: Date(milliseconds: Int(trip.startsdate)))) to \(formatterLong.string(from: Date(milliseconds: Int(trip.enddate))))"
         cell.titleLabel?.text = trip.title
         cell.userName?.text = trip.name
-        let availableSeats = trip.pals  - Int(trip.count_accept ?? "0")!
+        let availableSeats = Int(trip.pals)  - Int(trip.count_accept ?? "0")!
         cell.seatLabel?.text = "\(availableSeats == 0 ? "No" : String(availableSeats) ) seats available"
         
-        cell.descriptionLabel?.text = trip.description
-        cell.initialLabel?.text = trip.name.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }.uppercased()
+        cell.descriptionLabel?.text = trip.trip_description
+        cell.initialLabel?.text = trip.name!.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }.uppercased()
         cell.ticketButton.addTarget(self, action: #selector(self.ticketButtonTapped(sender:)), for: .touchUpInside);
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showOwnerInfo(tapGestureRecognizer:)))
         cell.userInfoStackView.isUserInteractionEnabled = true
@@ -233,61 +299,60 @@ extension MyDestinationListViewController : UITableViewDataSource, UITableViewDe
         else {
             cell.countTextLabel.text = "\(trip.count ?? "No") \(trip.count! == "1" ? "person" : "people") request for booking"
         }
-        if  let directionsResponse = TripModel.mapRoute[trip.id]
+        
+        if  let _ = trip.id ,let directionsResponse = TripModel.mapRoute[trip.id!]
         {
             showRoute(directionsResponse, cell.mapView)
             cell.mapView?.setRegion( MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: trip.latstart, longitude: trip.longstart), span: MKCoordinateSpan(latitudeDelta: 4, longitudeDelta: 4)), animated: true)
         }
-        if trip.uid == Int(UserManager.shared.getUserId()!) && trip.status! != 2 {
+        if Int(trip.uid) == Int(UserManager.shared.getUserId()!) && trip.status != 2 {
             cell.ticketButton.setImage(UIImage(named: "deleted.png"), for: UIControlState.normal)
         }
-        else if nil ==  trip.status {
+        else if -1 ==  trip.status {
             cell.ticketButton.setImage(UIImage(named: "book_seat.png"), for: .normal)
         }
-        else if trip.status! == 0 {
+        else if trip.status == 0 {
             cell.ticketButton.setImage(UIImage(named: "waiting.png"), for: .normal)
         }
-        else if trip.status! == 1 {
+        else if trip.status == 1 {
             cell.ticketButton.setImage(UIImage(named: "accepted.png"), for: .normal)
         }
-        else if trip.status! == 2 {
+        else if trip.status == 2 {
             cell.ticketButton.setImage(UIImage(named: "info.png"), for: .normal)
         }
-        else if trip.status! == 3 {
+        else if trip.status == 3 {
             cell.ticketButton.setImage(UIImage(named: "cancelled.png"), for: .normal)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        selectedTrip = TripModel.myTripList[indexPath.row]
+        selectedTrip = fetchedResultController.object(at: indexPath)
         self.performSegue(withIdentifier: "GotoDetailSegue", sender: nil)
     }
     
     @objc func ticketButtonTapped(sender : UIButton){
         guard let cell = sender.superview?.superview?.superview?.superview?.superview?.superview as? MyTripTableCell else {
-            return // or fatalError() or whatever
+            return
         }
         
         if let indexPath = tableView.indexPath(for: cell) {
-            let trip: Trip = TripModel.myTripList[indexPath.row]
-            if trip.uid == Int(UserManager.shared.getUserId()!) && trip.status! != 2 {
+            let trip: NSTripObject = fetchedResultController.object(at: indexPath)
+            if Int(trip.uid) == Int(UserManager.shared.getUserId()!) && trip.status != 2 {
                 AlertController.showAlert("Delete Trip?", message: "Really want to delete this trip?",actionLabel: "Delete",completion: {(UIAlertAction)
                     in
                     self.spinner?.startAnimating()
-                    let request = MyDestinationList.RequestDeleteTrip(trip_id: trip.id, position: indexPath.row)
+                    let request = MyDestinationList.RequestDeleteTrip(trip_id: trip.id!, position: indexPath.row)
                     self.interactor?.deleteTrip(request: request)
                 })
                 
             }
-            else   if let _ = trip.status {
-                let messsage = trip.status! == 0 ? "Your booking request is pending \n Want to delete it?" : (trip.status! == 1 ? "Your booking request is accepted \n Want to delete it?" : (trip.status! == 3 ? "Your booking request has declined \n Want to delete it?" : "This trip has been deleted by Owner \n Want to Delete it?"))
+            else   if -1 != trip.status {
+                let messsage = trip.status == 0 ? "Your booking request is pending \n Want to delete it?" : (trip.status == 1 ? "Your booking request is accepted \n Want to delete it?" : (trip.status == 3 ? "Your booking request has declined \n Want to delete it?" : "This trip has been deleted by Owner \n Want to Delete it?"))
                 AlertController.showAlert("Cancel booking request?", message: messsage,actionLabel: "Delete",completion: {(UIAlertAction)
                     in
-                    
                     self.spinner?.startAnimating()
-                    let request = MyDestinationList.RequestDeleteTicket(uid: UserManager.shared.getUserId()!, trip_id: trip.id , position: indexPath.row)
+                    let request = MyDestinationList.RequestDeleteTicket(uid: UserManager.shared.getUserId()!, trip_id: trip.id! , position: indexPath.row)
                     self.interactor?.deleteTicketRequest(request: request) })
             }
             
@@ -295,12 +360,37 @@ extension MyDestinationListViewController : UITableViewDataSource, UITableViewDe
     }
     @objc func showOwnerInfo(tapGestureRecognizer : UITapGestureRecognizer){
         guard let cell = tapGestureRecognizer.view?.superview?.superview?.superview?.superview?.superview?.superview as? MyTripTableCell else {
-            return // or fatalError() or whatever
+            return
         }
-        
         if let indexPath = tableView.indexPath(for: cell) {
-            let trip: Trip = TripModel.myTripList[indexPath.row]
-            AlertController.showAlert(trip.title, message: "Owner -: \(trip.name)\nContact-: \(trip.phone)")
+            let trip: NSTripObject = fetchedResultController.object(at: indexPath)
+            AlertController.showAlert(trip.title!, message: "Owner -: \(trip.name!)\nContact-: \(trip.phone!)")
         }
     }
+}
+//MARK: NSFetchedResultsControllerDelegate
+extension MyDestinationListViewController:NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            break
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            break
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .fade)
+        case .move:
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
 }

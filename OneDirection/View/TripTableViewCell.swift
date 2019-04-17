@@ -25,6 +25,8 @@ class TripTableViewCell: UITableViewCell, MKMapViewDelegate{
         super.layoutSubviews()
         initialLabel.layer.backgroundColor  = TripModel.colorList[ Int(arc4random_uniform(UInt32(TripModel.colorList.count)))]
         initialLabel.layer.cornerRadius = 25
+        ticketButton.contentMode = .center
+        ticketButton.imageView?.contentMode = .scaleAspectFit
       
     }
     func mapView(_ mapView: MKMapView, rendererFor
@@ -34,6 +36,7 @@ class TripTableViewCell: UITableViewCell, MKMapViewDelegate{
         renderer.strokeColor = UIColor.blue
         renderer.lineWidth = 1.0
         return renderer
+        
     }
     override func awakeFromNib() {
         super.awakeFromNib()

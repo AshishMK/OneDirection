@@ -13,6 +13,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 protocol DetailTripDisplayLogic: class
 {
     func updateBookingStatus(success: Bool, message: String)
@@ -34,11 +35,13 @@ class DetailTripViewController: UIViewController, DetailTripDisplayLogic
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var userInfoStackView: UIStackView!
     
+    @IBOutlet weak var navigationIten: UINavigationItem!
     // MARK: Variables
+    var dataController : DataController!
     var appDelegate: AppDelegate!
     var interactor: DetailTripBusinessLogic?
     var router: (NSObjectProtocol & DetailTripRoutingLogic & DetailTripDataPassing)?
-    var trip: Trip?
+    var trip: NSTripObject?
     var   spinner: UIActivityIndicatorView?
     
     // MARK: Lifecycle methods
@@ -100,13 +103,14 @@ class DetailTripViewController: UIViewController, DetailTripDisplayLogic
     //MARK: Private methods
     func setDetails()
     {
+        navigationIten.title = trip?.title
         initialLabel.layer.backgroundColor  = TripModel.colorList[ Int(arc4random_uniform(UInt32(TripModel.colorList.count)))]
         initialLabel.layer.cornerRadius = 25
-        initialLabel?.text = trip!.name.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }.uppercased()
+        initialLabel?.text = trip!.name!.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }.uppercased()
         nameLabel?.text = trip!.name
         dateLabel?.text =  "\(appDelegate.formatter.string(from: Date(milliseconds: Int(trip!.startsdate)))) to \(appDelegate.formatterLong.string(from: Date(milliseconds: Int(trip!.enddate))))"
-        descriptionTextView.text = trip?.description
-        let availableSeats = (trip?.pals)!  - Int(trip?.count_accept ?? "0")!
+        descriptionTextView.text = trip?.trip_description
+        let availableSeats = Int(trip!.pals)  - Int(trip?.count_accept ?? "0")!
         seatCountLabel.text = "\(availableSeats == 0 ? "No" : String(availableSeats) ) seats available"
         if nil ==  trip!.count {
             countRequestLabel.text = "No one request for booking yet"
@@ -117,22 +121,22 @@ class DetailTripViewController: UIViewController, DetailTripDisplayLogic
         setTicketStatus()
     }
     func setTicketStatus(){
-        if trip?.uid == Int(UserManager.shared.getUserId()!) {
+        if Int(trip!.uid) == Int(UserManager.shared.getUserId()!) {
             ticketButton.setImage(UIImage(named: "deleted.png"), for: .normal)
         }
-        else if nil ==  trip?.status {
+        else if -1 ==  trip?.status {
             ticketButton.setImage(UIImage(named: "book_seat.png"), for: .normal)
         }
-        else if trip?.status! == 0 {
+        else if trip?.status == 0 {
             ticketButton.setImage(UIImage(named: "waiting.png"), for: .normal)
         }
-        else if trip?.status! == 1 {
+        else if trip?.status == 1 {
             ticketButton.setImage(UIImage(named: "accepted.png"), for: .normal)
         }
-        else if trip?.status! == 2 {
+        else if trip?.status == 2 {
             ticketButton.setImage(UIImage(named: "info.png"), for: .normal)
         }
-        else if trip?.status! == 3 {
+        else if trip?.status == 3 {
             ticketButton.setImage(UIImage(named: "cancelled.png"), for: .normal)
         }
     }
@@ -142,7 +146,7 @@ class DetailTripViewController: UIViewController, DetailTripDisplayLogic
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func onTicketButtonClicked(_ sender: Any) {
-        if trip?.uid == Int(UserManager.shared.getUserId()!) {
+        if Int(trip!.uid) == Int(UserManager.shared.getUserId()!) {
             AlertController.showAlert("Delete Trip?", message: "Really want to delete this trip?",actionLabel: "Delete",completion: {(UIAlertAction)
                 in
                 self.spinner?.startAnimating()
@@ -150,7 +154,7 @@ class DetailTripViewController: UIViewController, DetailTripDisplayLogic
                 self.interactor?.deleteTrip(request: request)
             })
         }
-        else   if nil == trip?.status {
+        else   if -1 == trip?.status {
             AlertController.showAlert("Book seat?", message: "Please send booking request for this trip?\n You will be on waiting untill owner accept your request even seats are full",actionLabel: "Book",completion: {(UIAlertAction)
                 in
                 self.spinner?.startAnimating()
@@ -159,7 +163,7 @@ class DetailTripViewController: UIViewController, DetailTripDisplayLogic
             })
         }
         else {
-            let messsage = trip?.status! == 0 ? "Your booking request is pending \n Want to delete it?" : (trip?.status! == 1 ? "Your booking request has accepted \n Want to delete it?" : (trip?.status! == 2 ? "Trip has been deleted by owner. \n Want to delete it?" : "Your booking request has been declined. \n Want to delete it?"))
+            let messsage = trip?.status == 0 ? "Your booking request is pending \n Want to delete it?" : (trip?.status == 1 ? "Your booking request has accepted \n Want to delete it?" : (trip?.status == 2 ? "Trip has been deleted by owner. \n Want to delete it?" : "Your booking request has been declined. \n Want to delete it?"))
             AlertController.showAlert("Delete booking request?", message: messsage,actionLabel: "Delete",completion: {(UIAlertAction)
                 in
                 self.spinner?.startAnimating()
@@ -172,7 +176,8 @@ class DetailTripViewController: UIViewController, DetailTripDisplayLogic
     func updateBookingStatus(success: Bool, message: String) {
         spinner?.stopAnimating()
         if success {
-            trip?.status = Int(message)
+            trip?.status = Int32(message)!
+              try! dataController.viewContext.save()
             setTicketStatus()
         }
         else {
@@ -196,8 +201,9 @@ class DetailTripViewController: UIViewController, DetailTripDisplayLogic
         spinner?.stopAnimating()
         if success {
             
-            trip?.status = nil
-            if let deleted = trip?.deleted {
+            trip?.status = -1
+              try! dataController.viewContext.save()
+            if let deleted = trip?.is_deleted {
                 if deleted {
                     self.dismiss(animated: true, completion: nil)
                     return
@@ -224,7 +230,7 @@ extension DetailTripViewController : MKMapViewDelegate{
     }
     
     func loadRoutes(){
-        if  let directionsResponse = TripModel.mapRoute[trip!.id]
+        if  let directionsResponse = TripModel.mapRoute[trip!.id!]
         {
             showRoute(directionsResponse)
             return
@@ -244,7 +250,7 @@ extension DetailTripViewController : MKMapViewDelegate{
             
             if error != nil {
             } else {
-                TripModel.mapRoute[self.trip!.id] = response
+                TripModel.mapRoute[self.trip!.id!] = response
                 self.showRoute(response!)
             }
         })

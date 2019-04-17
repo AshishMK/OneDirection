@@ -15,7 +15,13 @@ import Foundation
 
 class MainWorker
 {
+    
     typealias Parameters = [String: String]
+
+    enum TripType : Int {
+        case allTrip
+        case myTrip
+    }
     enum Endpoints {
         static let baseURLParse = "http://97.74.4.59:"
         case getOTP (String, String)

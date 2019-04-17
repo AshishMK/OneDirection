@@ -126,6 +126,14 @@ class CreateDirectionViewController: UIViewController, CreateDirectionDisplayLog
     }
     
     @IBAction func findRoute(_ sender: Any) {
+        if startingPoint == nil {
+            AlertController.showAlert("Enter starting point", message: "Starting point caould not be empty")
+            return
+        }
+        if endPoint == nil {
+            AlertController.showAlert("Enter destination point", message: "Destination point caould not be empty")
+            return
+        }
         let request = MKDirectionsRequest()
         let mkPlacemark = MKPlacemark(coordinate: (endPoint?.location?.coordinate)!)
         let mkPlacemark2 = MKPlacemark(coordinate: (startingPoint?.location?.coordinate)!)

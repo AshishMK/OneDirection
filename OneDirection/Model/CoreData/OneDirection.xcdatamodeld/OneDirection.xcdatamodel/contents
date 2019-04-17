@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="NSCommentObject" representedClassName="NSCommentObject" syncable="YES" codeGenerationType="class">
+        <attribute name="cmnt_time" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creater_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trip_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="tripObject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NSTripObject" inverseName="commentRelation" inverseEntity="NSTripObject" syncable="YES"/>
+    </entity>
+    <entity name="NSTripObject" representedClassName="NSTripObject" syncable="YES" codeGenerationType="class">
+        <attribute name="count" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="count_accept" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="enddate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="is_deleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latend" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latstart" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longend" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longstart" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mapRoute" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" customClassName="MKDirectionsResponse" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pals" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startsdate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 32" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trip_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trip_type" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="commentRelation" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="NSCommentObject" inverseName="tripObject" inverseEntity="NSCommentObject" syncable="YES"/>
+        <relationship name="tripRequestRelation" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="NSTripRequestObject" inverseName="tripObject" inverseEntity="NSTripRequestObject" syncable="YES"/>
+    </entity>
+    <entity name="NSTripRequestObject" representedClassName="NSTripRequestObject" syncable="YES" codeGenerationType="class">
+        <attribute name="creater_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="enddate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startsdate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trip_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="tripObject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NSTripObject" inverseName="tripRequestRelation" inverseEntity="NSTripObject" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="NSCommentObject" positionX="-4178" positionY="-28827" width="128" height="193"/>
+        <element name="NSTripObject" positionX="-4437" positionY="-28899" width="207" height="358"/>
+        <element name="NSTripRequestObject" positionX="-4383" positionY="-28468" width="128" height="208"/>
+    </elements>
+</model>

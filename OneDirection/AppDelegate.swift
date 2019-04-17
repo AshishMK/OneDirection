@@ -12,15 +12,18 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-  
+  let dataController = DataController(modelName: "OneDirection")
 
     let formatter: DateFormatter = DateFormatter()
     let formatterLong: DateFormatter = DateFormatter()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
+          dataController.load()
         formatter.dateFormat = "HH:mm a, dd MMM"
         formatterLong.dateFormat = "dd MMM'' yyyy"
-        
+        let loginViewController = window?.rootViewController as! LoginViewController
+        loginViewController.dataController = dataController
         return true
     }
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A177E73225F08E500057CCD /* OneDirection.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7A177E71225F08E500057CCD /* OneDirection.xcdatamodeld */; };
+		7A177E76225F647000057CCD /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A177E75225F647000057CCD /* DataController.swift */; };
+		7A177E782260B40B00057CCD /* MapRouteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A177E772260B40B00057CCD /* MapRouteResponse.swift */; };
 		7A258BCB2255B7E100853ACC /* CommentTabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BCA2255B7E100853ACC /* CommentTabelCell.swift */; };
 		7A258BD02255BB6200853ACC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BCF2255BB6200853ACC /* Comment.swift */; };
 		7A258BD22255BFCC00853ACC /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A258BD12255BFCC00853ACC /* RoundedTextField.swift */; };
@@ -96,6 +99,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A177E72225F08E500057CCD /* OneDirection.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OneDirection.xcdatamodel; sourceTree = "<group>"; };
+		7A177E75225F647000057CCD /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		7A177E772260B40B00057CCD /* MapRouteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouteResponse.swift; sourceTree = "<group>"; };
 		7A258BCA2255B7E100853ACC /* CommentTabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTabelCell.swift; sourceTree = "<group>"; };
 		7A258BCF2255BB6200853ACC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		7A258BD12255BFCC00853ACC /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
@@ -197,6 +203,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A177E74225F08EC00057CCD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7A177E71225F08E500057CCD /* OneDirection.xcdatamodeld */,
+				7A177E75225F647000057CCD /* DataController.swift */,
+				7A177E772260B40B00057CCD /* MapRouteResponse.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		7A258C642256E28F00853ACC /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +427,7 @@
 			children = (
 				7AD6B0582232870600A6914F /* Data */,
 				7AD6B0552232265300A6914F /* Responses */,
+				7A177E74225F08EC00057CCD /* CoreData */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -523,6 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A258C262256E28000853ACC /* LoginViewController.swift in Sources */,
+				7A177E782260B40B00057CCD /* MapRouteResponse.swift in Sources */,
 				7AD6B099223E025200A6914F /* TripModel.swift in Sources */,
 				7A258C532256E28000853ACC /* TripBookingRequestsViewController.swift in Sources */,
 				7A258C5D2256E28000853ACC /* LoginPresenter.swift in Sources */,
@@ -582,6 +600,7 @@
 				7A258C2D2256E28000853ACC /* CreateTripViewController.swift in Sources */,
 				7A258C362256E28000853ACC /* DestinationListModels.swift in Sources */,
 				7A258C272256E28000853ACC /* DetailTripPresenter.swift in Sources */,
+				7A177E73225F08E500057CCD /* OneDirection.xcdatamodeld in Sources */,
 				7A258C602256E28000853ACC /* DetailTripRouter.swift in Sources */,
 				7A258C572256E28000853ACC /* TripCommentInteractor.swift in Sources */,
 				7A258C442256E28000853ACC /* TripRequestsPresenter.swift in Sources */,
@@ -596,6 +615,7 @@
 				7A258C342256E28000853ACC /* DetailTripWorker.swift in Sources */,
 				7A258C242256E28000853ACC /* DestinationListWorker.swift in Sources */,
 				7AD6B05A2232886600A6914F /* UserManager.swift in Sources */,
+				7A177E76225F647000057CCD /* DataController.swift in Sources */,
 				7A258C2C2256E28000853ACC /* TripRequestsModels.swift in Sources */,
 				7A258C252256E28000853ACC /* LoginWorker.swift in Sources */,
 				7A258C2A2256E28000853ACC /* TripBookingRequestsPresenter.swift in Sources */,
@@ -802,6 +822,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7A177E71225F08E500057CCD /* OneDirection.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7A177E72225F08E500057CCD /* OneDirection.xcdatamodel */,
+			);
+			currentVersion = 7A177E72225F08E500057CCD /* OneDirection.xcdatamodel */;
+			path = OneDirection.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7AD6B02522310E8A00A6914F /* Project object */;
 }

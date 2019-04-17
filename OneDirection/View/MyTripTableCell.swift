@@ -24,7 +24,8 @@ class MyTripTableCell: UITableViewCell, MKMapViewDelegate {
     @IBOutlet weak var userInfoStackView: UIStackView!
     override func layoutSubviews() {
         super.layoutSubviews()
-     
+        ticketButton.contentMode = .center
+        ticketButton.imageView?.contentMode = .scaleAspectFit
 
     }
     func mapView(_ mapView: MKMapView, rendererFor

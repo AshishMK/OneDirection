@@ -18,6 +18,7 @@ class TripRequestTableCell : UITableViewCell{
         super.layoutSubviews()
         initialLabel.layer.backgroundColor  = TripModel.colorList[ Int(arc4random_uniform(UInt32(TripModel.colorList.count)))]
         initialLabel.layer.cornerRadius = 25
-        
+        ticketButton.contentMode = .center
+        ticketButton.imageView?.contentMode = .scaleAspectFit
     }
 }

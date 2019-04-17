@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol TripCommentDisplayLogic: class
 {
@@ -25,9 +26,11 @@ class TripCommentViewController: UIViewController, TripCommentDisplayLogic
     @IBOutlet weak var messageTextField: RoundedTextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noItemView: UIView!
-    var   spinner: UIActivityIndicatorView?
-    var trip : Trip?
+    var spinner: UIActivityIndicatorView?
+    var trip : NSTripObject?
+    var dataController : DataController!
     var appDelegate: AppDelegate!
+    var fetchedResultController : NSFetchedResultsController<NSCommentObject>!
     var interactor: TripCommentBusinessLogic?
     var router: (NSObjectProtocol & TripCommentRoutingLogic & TripCommentDataPassing)?
     
@@ -59,6 +62,20 @@ class TripCommentViewController: UIViewController, TripCommentDisplayLogic
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+    }
+    // Settingup CoreData result for image collection
+    fileprivate func setUpFetchResultController() {
+        let fetchRequest: NSFetchRequest<NSCommentObject> = NSCommentObject.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "id", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        let predicate = NSPredicate(format: "tripObject == %@", trip!)
+        fetchRequest.predicate = predicate
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultController.delegate = self
+        do{
+            try  fetchedResultController.performFetch()
+        }  catch {
+        }
     }
     
     // MARK: Routing
@@ -99,6 +116,7 @@ class TripCommentViewController: UIViewController, TripCommentDisplayLogic
         spinner?.startAnimating()
         interactor?.getComments(trip_id: trip?.id ?? "0")
         subscribeToKeyboardNotifications()
+        setUpFetchResultController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,7 +125,6 @@ class TripCommentViewController: UIViewController, TripCommentDisplayLogic
     }
     //MARK: Keyboard height detction methods
     func subscribeToKeyboardNotifications() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
@@ -143,30 +160,84 @@ class TripCommentViewController: UIViewController, TripCommentDisplayLogic
     }
     // MARK: Do something
     func showComments(comments : [Comment], error: Error?){
-        if comments.count == 0
-        {     noItemView.isHidden = false
+        if error == nil {
+            saveToCoreData(comments: comments)
         }
-        spinner?.stopAnimating()
-        TripModel.tripComments = comments
-        tableView.reloadData()
+        if comments.count == 0
+        {
+            spinner?.stopAnimating()
+            if fetchedResultController.sections?[0].numberOfObjects == 0 {
+                noItemView.isHidden = false
+            }
+        }
+    }
+    
+
+    
+    func saveToCoreData(comments : [Comment]){
+        let backgroundContext : NSManagedObjectContext! = dataController.backgroundContext
+        
+        //deleting old items
+        for trip in self.fetchedResultController.sections![0].objects!
+        {   dataController.viewContext.delete(trip as! NSManagedObject)
+            try? dataController.viewContext.save()
+        }
+        
+        backgroundContext.perform {
+          
+            for comment in  comments {
+                let img = NSCommentObject(context: self.dataController.viewContext)
+                img.id = comment.id
+                img.cmnt_time = comment.cmnt_time
+                img.creater_id = Int32(comment.creater_id)
+                img.name = comment.name
+                img.phone = comment.phone
+                img.tripObject = self.trip!
+                img.title = comment.title
+                img.trip_id = Int32(comment.trip_id)
+                img.uid = Int32(comment.uid)
+                img.comment = comment.comment
+                try? backgroundContext.save()
+            }
+            DispatchQueue.main.async {
+                self.spinner?.stopAnimating()
+                
+            }
+        }
     }
     func commentAdded(comment : Comment?, error: Error?)
     {
         noItemView.isHidden = true
         spinner?.stopAnimating()
         if let comment = comment {
-            TripModel.tripComments.insert(comment, at: 0)
-            tableView.reloadData()
+            let backgroundContext : NSManagedObjectContext! = dataController.backgroundContext
+            
+            let img = NSCommentObject(context: self.dataController.viewContext)
+            img.id = comment.id
+            img.cmnt_time = comment.cmnt_time
+            img.creater_id = Int32(comment.creater_id)
+            img.name = comment.name
+            img.phone = comment.phone
+            img.tripObject = self.trip!
+            img.title = comment.title
+            img.trip_id = Int32(comment.trip_id)
+            img.uid = Int32(comment.uid)
+            img.comment = comment.comment
+            try? backgroundContext.save()
+        
         }
         else {
             AlertController.showAlert("Can not add Comment", message: error.debugDescription)
         }
     }
+    
+    
     func commentDeleted(comment : Comment?, error: Error?,posintion: Int){
         spinner?.stopAnimating()
         if let _ = comment {
-            TripModel.tripComments.remove(at: posintion)
-            tableView.reloadData()
+            let commentToDelete = fetchedResultController.sections![0].objects![posintion]
+            dataController.backgroundContext.delete(commentToDelete as! NSManagedObject)
+            try? dataController.backgroundContext.save()
         }
     }
     
@@ -176,7 +247,7 @@ class TripCommentViewController: UIViewController, TripCommentDisplayLogic
             return
         }
         spinner?.startAnimating()
-        let comment = Comment(id : "", comment: messageTextField.text ?? "",uid: Int( UserManager.shared.getUserId() ?? "0")! ,trip_id: Int(trip?.id ?? "0")!,name: UserManager.shared.getUserName()!, phone: UserManager.shared.getUserPhone()!,cmnt_time : Double(Date().millisecondsSince1970),creater_id: (trip?.uid)! , title: trip?.title ?? "")
+        let comment = Comment(id : "", comment: messageTextField.text ?? "",uid: Int( UserManager.shared.getUserId() ?? "0")! ,trip_id: Int(trip?.id ?? "0")!,name: UserManager.shared.getUserName()!, phone: UserManager.shared.getUserPhone()!,cmnt_time : Double(Date().millisecondsSince1970),creater_id: Int(trip!.uid) , title: trip?.title ?? "")
         interactor?.sendComment(comment: comment)
     }
 }
@@ -184,32 +255,32 @@ class TripCommentViewController: UIViewController, TripCommentDisplayLogic
 //MARK: TableView Delegates
 extension TripCommentViewController : UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  TripModel.tripComments.count
+       return fetchedResultController.sections?[section].numberOfObjects ?? 0
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+     return fetchedResultController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTabelCell
-        let comment = TripModel.tripComments[indexPath.row]
+        let comment =  fetchedResultController.object(at: indexPath)
         cell.nameLabel.text = comment.name
         cell.commentLabel.text = comment.comment
-        cell.initialLabel?.text = comment.name.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }.uppercased()
+        cell.initialLabel?.text = comment.name!.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }.uppercased()
         cell.dateLabel?.text = appDelegate.formatter.string(from: Date(milliseconds: Int(comment.cmnt_time)))
         cell.transform   = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let comment = TripModel.tripComments[indexPath.row]
+        let comment =  fetchedResultController.object(at: indexPath)
         if UserManager.shared.getUserId() == String(comment.creater_id) || String(comment.uid) ==  UserManager.shared.getUserId()  {
             
             AlertController.showAlert("Delete comment?", message: "Sure to delete this comment",actionLabel: "Delete",completion: {(UIAlertAction)
                 in
                 self.spinner?.startAnimating()
                 
-                self.interactor?.deleteComment(id: comment.id, position: indexPath.row)
+                self.interactor?.deleteComment(id: comment.id!, position: indexPath.row)
             })
         }
     }
@@ -221,4 +292,33 @@ extension TripCommentViewController: UITextFieldDelegate{
         self.view.endEditing(true)
         return false
     }
+}
+//MARK: NSFetchedResultsControllerDelegate
+extension TripCommentViewController:NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            break
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            break
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .fade)
+        case .move:
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
+    
+    
+    
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
 }

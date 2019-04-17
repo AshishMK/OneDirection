@@ -30,10 +30,11 @@ class LoginViewController: UIViewController, LoginDisplayLogic
     @IBOutlet weak var enterOTPTextField: UITextField!
     @IBOutlet weak var wrongNumberButton: UIButton!
     @IBOutlet weak var verifyActivityIndicator: UIActivityIndicatorView!
-     @IBOutlet weak var sentOTPMessageText: UILabel!
+    @IBOutlet weak var sentOTPMessageText: UILabel!
     
     //MARK: Properties
     var interactor: LoginBusinessLogic?
+    var dataController : DataController!
     var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)?
     
     // MARK: Object lifecycle
@@ -86,7 +87,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic
         
         super.viewDidAppear(animated)
         if UserManager.shared.isLoggedIn() {
-                self.performSegue(withIdentifier: "completeLogin", sender: nil)
+            self.performSegue(withIdentifier: "completeLogin", sender: nil)
         }
     }
     // MARK: Routing
@@ -97,6 +98,18 @@ class LoginViewController: UIViewController, LoginDisplayLogic
             if let router = router, router.responds(to: selector) {
                 router.perform(selector, with: segue)
             }
+        }
+        if segue.identifier == "completeLogin" {
+            let destinationVC = segue.destination as! UITabBarController
+            let vc = destinationVC.viewControllers![0] as! DestinationListViewController
+            vc.dataController = dataController
+            let my_vc = destinationVC.viewControllers![1] as! MyDestinationListViewController
+            my_vc.dataController = dataController
+            let req_vc = destinationVC.viewControllers![2] as! TripBookingRequestsViewController
+            req_vc.dataController = dataController
+            let comnt_vc = destinationVC.viewControllers![3] as! RecentTripCommentsViewController
+            comnt_vc.dataController = dataController
+            
         }
     }
     
@@ -126,7 +139,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic
         interactor?.verifyOTP(request: request)
     }
     
-   
+    
     @IBAction func wrongNumber(_ sender: Any) {
         OTPView.isHidden = true
     }
@@ -164,27 +177,27 @@ class LoginViewController: UIViewController, LoginDisplayLogic
     {
         if viewModel.success {
             enterOTPTextField.text? = ""
-           OTPView.isHidden = true
+            OTPView.isHidden = true
             sentOTPMessageText.text = "We have sent OTP on \(phoneTextField.text!)"
             OTPView.isHidden = false
         }
         else{
             AlertController.showAlert("Login Failed",message: viewModel.message )
         }
-          setLoggingIn(false)
+        setLoggingIn(false)
     }
     
     func handleVerifyOTPResponse(viewModel: Login.ViewModel)
     {
         if viewModel.success {
-           
+            
             OTPView.isHidden = false
             self.performSegue(withIdentifier: "completeLogin", sender: nil)
         }
         else{
             AlertController.showAlert("Login Failed",message: viewModel.message )
         }
-         setVeryfyingIn(false)
+        setVeryfyingIn(false)
         
     }
     
